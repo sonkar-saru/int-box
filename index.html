@@ -121,6 +121,8 @@
       if(!path) return;
       const finalUrl = decodedUrl + path;
       const finalWithUtm = addUtm(finalUrl, utmParams);
+      // mark as closed for this session
+      sessionStorage.setItem("commonDrawerClosed", "1");
       window.open(finalWithUtm,"_blank");
     });
   });
