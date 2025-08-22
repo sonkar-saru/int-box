@@ -72,6 +72,10 @@
 
   // Validate URL
   if(!decodedUrl.startsWith("https://")) return;
+  // Prevent re-show in this session
+  if (sessionStorage.getItem("commonDrawerClosed") === "1") {
+    return; // user already closed/stayed
+  }
 
   const drawer = document.getElementById("common-drawer");
   const stayBtn = document.getElementById("common-stay-btn");
@@ -128,6 +132,8 @@
       drawer.classList.remove("show");
       drawer.style.animation="";
     }, {once:true});
+    // mark as closed for this session
+    sessionStorage.setItem("commonDrawerClosed", "1");
   }
 
   stayBtn.addEventListener("click", closeDrawer);
