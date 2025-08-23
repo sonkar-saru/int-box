@@ -15,7 +15,7 @@
       <div class="common-category-card tech" data-url="/tech" tabindex="0">💻 <span>Tech</span></div>
       <div class="common-category-card world" data-url="/world" tabindex="0">🌍 <span>World</span></div>
     </div>
-    <p class="common-drawer-disclaimer">Quizzes on kwizr.com, a free site with ads.</p>
+    <p id="common-drawer-disclaimer" class="common-drawer-disclaimer"></p>
   </div>
   <div class="common-drawer-footer">
     <div class="common-drawer-buttons">
@@ -135,6 +135,17 @@
     });
     card.addEventListener("keypress", e => { if(e.key==="Enter") card.click(); });
   });
+
+  // Set dynamic disclaimer
+  const disclaimerEl = document.getElementById("common-drawer-disclaimer");
+  try {
+    const urlObj = new URL(decodedUrl);
+    const hostname = urlObj.hostname; // extracts "kwizr.com"
+    disclaimerEl.textContent = `Quizzes on ${hostname}, a free site with ads.`;
+  } catch(e) {
+    disclaimerEl.textContent = `Quizzes on our site, a free site with ads.`;
+  }
+
 
   // Continue / stay buttons
   continueBtn.addEventListener("click",()=>{
