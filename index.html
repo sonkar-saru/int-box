@@ -1,45 +1,63 @@
-<div id="common-drawer" class="common-drawer">
+<div id="common-drawer" class="common-drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
   <div class="common-drawer-header">
-    <h2 class="common-drawer-title">Pick Your Next Challenge 🔥</h2>
-    <button id="common-close-btn" class="common-close">&times;</button>
+    <h2 id="drawerTitle" class="common-drawer-title">Pick Your Next Challenge 🔥</h2>
+    <button id="common-close-btn" class="common-close" aria-label="Close drawer">&times;</button>
   </div>
   <div class="common-drawer-content">
     <p class="common-drawer-subtitle">Explore fun quizzes across categories — earn points and climb the leaderboard!</p>
     <div class="common-category-grid">
-      <div class="common-category-card business" data-url="/business">💼 <span>Business</span></div>
-      <div class="common-category-card films" data-url="/films-celeb">🎬 <span>Films & Celebs</span></div>
-      <div class="common-category-card food" data-url="/food">🍔 <span>Food</span></div>
-      <div class="common-category-card gk" data-url="/general-knowledge">📚 <span>GK</span></div>
-      <div class="common-category-card politics" data-url="/politics">🏛️ <span>Politics</span></div>
-      <div class="common-category-card sports" data-url="/sports">🏅 <span>Sports</span></div>
-      <div class="common-category-card tech" data-url="/tech">💻 <span>Tech</span></div>
-      <div class="common-category-card world" data-url="/world">🌍 <span>World</span></div>
+      <div class="common-category-card business" data-url="/business" tabindex="0">💼 <span>Business</span></div>
+      <div class="common-category-card films" data-url="/films-celeb" tabindex="0">🎬 <span>Entertain</span></div>
+      <div class="common-category-card food" data-url="/food" tabindex="0">🍔 <span>Food</span></div>
+      <div class="common-category-card gk" data-url="/general-knowledge" tabindex="0">📚 <span>GK</span></div>
+      <div class="common-category-card politics" data-url="/politics" tabindex="0">🏛️ <span>Politics</span></div>
+      <div class="common-category-card sports" data-url="/sports" tabindex="0">🏅 <span>Sports</span></div>
+      <div class="common-category-card tech" data-url="/tech" tabindex="0">💻 <span>Tech</span></div>
+      <div class="common-category-card world" data-url="/world" tabindex="0">🌍 <span>World</span></div>
     </div>
-    <p class="common-drawer-disclaimer">Quizzes open on kwizr.com, a free news & trivia platform powered by ads.</p>
+    <p class="common-drawer-disclaimer">Quizzes on kwizr.com, a free site with ads.</p>
   </div>
   <div class="common-drawer-footer">
     <div class="common-drawer-buttons">
-      <button id="common-stay-btn" class="common-btn common-stay">Skip & Continue</button>
+      <button id="common-continue-btn" class="common-btn common-continue">Explore Quizzes</button>
+      <button id="common-stay-btn" class="common-btn common-stay">Skip</button>
     </div>
   </div>
 </div>
 
+<style>
+/* Drawer Styles (responsive, accessible, visually clean) */
+#common-drawer.common-drawer {
+  position: fixed; bottom: 0; left: 0; width: 100%; max-height: 50vh;
+  background: linear-gradient(135deg,#fff,#f9fafb,#fff);
+  border-top-left-radius:16px; border-top-right-radius:16px;
+  z-index: 9999; display: flex; flex-direction: column;
+  opacity: 0; transform: translateY(100%); pointer-events: none;
+}
 
-<style type="text/css">
-#common-drawer.common-drawer{position:fixed;bottom:0;left:0;width:100%;max-height:65vh;background:linear-gradient(135deg,#fff,#f9fafb,#fff);border-top-left-radius:16px;border-top-right-radius:16px;z-index:9999;display:flex;flex-direction:column;opacity:0;transform:translateY(100%);pointer-events:none;}
-@keyframes slideUpBounce{0%{transform:translateY(100%);opacity:0}60%{transform:translateY(-10%);opacity:1}80%{transform:translateY(5%)}100%{transform:translateY(0)}}
-@keyframes slideDown{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100%);opacity:0}}
-#common-drawer.show{animation:slideUpBounce .6s ease forwards;opacity:1;pointer-events:auto;}
-#common-drawer .common-drawer-header{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid #f0f0f0;}
-#common-drawer .common-drawer-title{font-size:1.1rem;font-weight:600;margin:0;}
-#common-drawer .common-close{border:none;font-size:1.8rem;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#d3d6e7;font-weight:bold;transition:background .2s ease,transform .2s ease;}
-#common-drawer .common-close:hover{background:#e5e7eb;transform:scale(1.1);}
-#common-drawer .common-drawer-content{flex:1;padding:14px 16px;text-align:center;overflow-y:auto;}
-#common-drawer .common-drawer-subtitle{font-size:.95rem;margin-bottom:16px;color:#333;}
-#common-drawer .common-category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
-#common-drawer .common-category-card{border-radius:10px;padding:14px 8px;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;color:#fff;font-size:1rem;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:4px;}
-#common-drawer .common-category-card span{font-size:1rem;font-weight:500;}
-#common-drawer .common-category-card:hover{transform:scale(1.05) rotateX(3deg) rotateY(3deg);box-shadow:0 8px 20px rgba(0,0,0,.2);}
+@keyframes slideUpBounce {
+  0% {transform:translateY(100%);opacity:0}
+  60% {transform:translateY(-10%);opacity:1}
+  80% {transform:translateY(5%)}
+  100% {transform:translateY(0)}
+}
+@keyframes slideDown {0%{transform:translateY(0);opacity:1}100%{transform:translateY(100%);opacity:0}}
+
+#common-drawer.show {animation: slideUpBounce .6s ease forwards; opacity:1; pointer-events:auto;}
+@media (prefers-reduced-motion: reduce) { #common-drawer.show {animation:none; transform:translateY(0);} }
+
+.common-drawer-header{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid #f0f0f0;}
+.common-drawer-title{font-size:1.1rem;font-weight:600;margin:0;}
+.common-close{border:none;font-size:1.2rem;cursor:pointer;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;transition:background .2s ease,transform .2s ease;}
+.common-close:hover{background:#e5e7eb;transform:scale(1.1);}
+
+.common-drawer-content{flex:1;padding:14px 16px;text-align:center;overflow-y:auto;}
+.common-drawer-subtitle{font-size:.95rem;margin-bottom:16px;color:#333;}
+.common-category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
+.common-category-card{border-radius:10px;padding:5px 8px;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;color:#fff;font-size:1rem;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.common-category-card span{font-size:1rem;font-weight:500;}
+.common-category-card:hover, .common-category-card:focus{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,.2);outline:none;}
+
 .business{background:linear-gradient(270deg,#2563eb,#3b82f6,#2563eb);animation:gradientShift 8s ease infinite;}
 .films{background:linear-gradient(270deg,#ec4899,#f43f5e,#ec4899);animation:gradientShift 8s ease infinite;}
 .food{background:linear-gradient(270deg,#f59e0b,#f97316,#f59e0b);animation:gradientShift 8s ease infinite;}
@@ -49,12 +67,18 @@
 .tech{background:linear-gradient(270deg,#06b6d4,#22d3ee,#06b6d4);animation:gradientShift 8s ease infinite;}
 .world{background:linear-gradient(270deg,#64748b,#94a3b8,#64748b);animation:gradientShift 8s ease infinite;}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-#common-drawer .common-drawer-buttons{display:flex;justify-content:center;gap:10px;}
-#common-drawer .common-btn{padding:10px 16px;border:none;border-radius:8px;font-size:.95rem;cursor:pointer;}
-#common-drawer .common-stay{background:#e5e7eb;color:#111;width:100%;font-weight:bold;}
-#common-drawer .common-drawer-footer{flex-shrink:0;padding:12px 16px;background:#fafafa;text-align:center;}
-#common-drawer .common-drawer-disclaimer{font-size:.65rem;color:#666;margin:0;}
-@media(min-width:768px){#common-drawer.common-drawer{width:420px;left:50%;transform:translateX(-50%) translateY(100%);max-height:70vh;border-radius:16px;backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.3);}#common-drawer.show{transform:translateX(-50%) translateY(0);}}
+
+.common-drawer-buttons{display:flex;justify-content:center;gap:10px;}
+.common-btn{padding:10px 16px;border:none;border-radius:8px;font-size:.95rem;cursor:pointer;}
+.common-stay{background:#e5e7eb;color:#111;width:100%;font-weight:bold;}
+.common-continue{background:#2563eb;color:white;width:100%;font-weight:bold;}
+.common-drawer-footer{flex-shrink:0;padding:12px 16px;background:#fafafa;text-align:center;}
+.common-drawer-disclaimer{font-size:.75rem;color:#666;margin:0;}
+
+@media(min-width:768px){
+  #common-drawer{width:420px;left:50%;transform:translateX(-50%) translateY(100%);max-height:70vh;border-radius:16px;backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.3);}
+  #common-drawer.show{transform:translateX(-50%) translateY(0);}
+}
 </style>
 
 <script>
@@ -70,16 +94,13 @@
     decodedUrl += String.fromCharCode(parseInt(encodedHex.slice(i,i+2),16));
   }
 
-  // Validate URL
   if(!decodedUrl.startsWith("https://")) return;
-  // Prevent re-show in this session
-  if (sessionStorage.getItem("commonDrawerClosed") === "1") {
-    return; // user already closed/stayed
-  }
+  if (sessionStorage.getItem("commonDrawerClosed") === "1") return;
 
   const drawer = document.getElementById("common-drawer");
   const stayBtn = document.getElementById("common-stay-btn");
   const closeBtn = document.getElementById("common-close-btn");
+  const continueBtn = document.getElementById("common-continue-btn");
 
   // Random title/subtitle
   const drawerContent=[
@@ -93,26 +114,14 @@
   document.querySelector("#common-drawer .common-drawer-title").textContent=randomItem.title;
   document.querySelector("#common-drawer .common-drawer-subtitle").textContent=randomItem.subtitle;
 
-  // Show drawer
-  drawer.classList.add("show");
+  // Show drawer after 2s for better UX
+  setTimeout(()=> drawer.classList.add("show"), 2000);
 
-  // UTM parameters
   const utmParams = window.utmData || {};
-
-  function addUtm(url, params = {}) {
-    try {
-      const u = new URL(url);
-      if (params && Object.keys(params).length > 0) {
-        Object.entries(params).forEach(([k, v]) => {
-          if (v !== undefined && v !== null) u.searchParams.set(k, v);
-        });
-      }
-      return u.toString();
-    } catch (e) {
-      return url; // fallback to original URL if invalid
-    }
+  function addUtm(url, params={}) {
+    try { const u = new URL(url); Object.entries(params).forEach(([k,v])=>v!==undefined && u.searchParams.set(k,v)); return u.toString(); }
+    catch(e){ return url; }
   }
-
 
   // Category click handler
   document.querySelectorAll("#common-drawer .common-category-card").forEach(card=>{
@@ -121,23 +130,22 @@
       if(!path) return;
       const finalUrl = decodedUrl + path;
       const finalWithUtm = addUtm(finalUrl, utmParams);
-      // mark as closed for this session
-      sessionStorage.setItem("commonDrawerClosed", "1");
+      sessionStorage.setItem("commonDrawerClosed","1");
       window.open(finalWithUtm,"_blank");
     });
+    card.addEventListener("keypress", e => { if(e.key==="Enter") card.click(); });
   });
 
-  // Close drawer
+  // Continue / stay buttons
+  continueBtn.addEventListener("click",()=>{
+    sessionStorage.setItem("commonDrawerClosed","1");
+    window.open(decodedUrl,"_blank");
+  });
   function closeDrawer(){
-    drawer.style.animation = "slideDown 0.5s ease forwards";
-    drawer.addEventListener("animationend",()=>{
-      drawer.classList.remove("show");
-      drawer.style.animation="";
-    }, {once:true});
-    // mark as closed for this session
-    sessionStorage.setItem("commonDrawerClosed", "1");
+    drawer.style.animation="slideDown 0.5s ease forwards";
+    drawer.addEventListener("animationend",()=>{ drawer.classList.remove("show"); drawer.style.animation=""; },{once:true});
+    sessionStorage.setItem("commonDrawerClosed","1");
   }
-
   stayBtn.addEventListener("click", closeDrawer);
   closeBtn.addEventListener("click", closeDrawer);
 })();
